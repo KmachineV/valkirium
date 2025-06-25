@@ -65,8 +65,7 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://www.serviciosindustriales.com" />
 
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="#" as="font" type="font/woff2" crossorigin />
+ 
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -245,7 +244,7 @@
           <h2 id="productos-title">Nuestros Productos</h2>
           <div class="productos-cards-grid">
             <div class="producto-card">
-              <div class="producto-icono">
+              <div class="producto-icono" data-product="frp" onclick="showProductModal('frp')">
                 <img src="img-01.png" alt="Tanques FRP" />
               </div>
               <div class="producto-titulo">
@@ -256,7 +255,7 @@
               </div>
             </div>
             <div class="producto-card">
-              <div class="producto-icono">
+              <div class="producto-icono" data-product="pead" onclick="showProductModal('pead')">
                 <img src="img-02.png" alt="Tanques PEAD" />
               </div>
               <div class="producto-titulo">
@@ -266,7 +265,7 @@
               </div>
             </div>
             <div class="producto-card">
-              <div class="producto-icono">
+              <div class="producto-icono" data-product="acero" onclick="showProductModal('acero')">
                 <img src="img-03.png" alt="Tuberías de Acero" />
               </div>
               <div class="producto-titulo">
@@ -274,7 +273,7 @@
               </div>
             </div>
             <div class="producto-card">
-              <div class="producto-icono">
+              <div class="producto-icono" data-product="conexiones" onclick="showProductModal('conexiones')">
                 <img src="img-04.png" alt="Conexiones" />
               </div>
               <div class="producto-titulo">
@@ -282,7 +281,7 @@
               </div>
             </div>
             <div class="producto-card">
-              <div class="producto-icono">
+              <div class="producto-icono" data-product="bridadas" onclick="showProductModal('bridadas')">
                 <img src="img-01.png" alt="Bridadas" />
               </div>
               <div class="producto-titulo">
@@ -290,7 +289,7 @@
               </div>
             </div>
             <div class="producto-card">
-              <div class="producto-icono">
+              <div class="producto-icono" data-product="valvulas" onclick="showProductModal('valvulas')">
                 <img src="img-01.png" alt="Valvulas" />
               </div>
               <div class="producto-titulo">
@@ -399,6 +398,83 @@
         menu.classList.toggle("show");
       }
     </script>
+    <script>
+      // Modal de productos
+      document.addEventListener("DOMContentLoaded", function () {
+        const productDescriptions = {
+          frp: {
+            title: "Tanques en plástico reforzado con fibra de vidrio (FRP)",
+            desc: "Tanques resistentes a la corrosión, ideales para almacenamiento de productos químicos y agua. Fabricados en FRP para máxima durabilidad y bajo mantenimiento."
+          },
+          pead: {
+            title: "Tanques Verticales y Horizontales en PEAD",
+            desc: "Tanques de polietileno de alta densidad (PEAD) para almacenamiento seguro de líquidos industriales, con excelente resistencia química y estructural."
+          },
+          acero: {
+            title: "Tuberías de Acero",
+            desc: "Tuberías industriales de acero al carbono e inoxidable, diseñadas para soportar altas presiones y temperaturas en sistemas industriales complejos."
+          },
+          conexiones: {
+            title: "Conexiones",
+            desc: "Amplia gama de conexiones para sistemas de tuberías, asegurando uniones seguras y eficientes en instalaciones industriales."
+          },
+          bridadas: {
+            title: "Bridadas",
+            desc: "Conexiones bridadas para facilitar el montaje y desmontaje de tuberías, garantizando estanqueidad y resistencia mecánica."
+          },
+          valvulas: {
+            title: "Válvulas",
+            desc: "Válvulas industriales de diferentes tipos y materiales para control y regulación de flujo en sistemas de proceso."
+          }
+        };
+
+        window.showProductModal = function(key) {
+          const modal = document.getElementById("product-modal");
+          const title = document.getElementById("product-modal-title");
+          const desc = document.getElementById("product-modal-desc");
+          if (productDescriptions[key]) {
+            title.textContent = productDescriptions[key].title;
+            desc.textContent = productDescriptions[key].desc;
+          } else {
+            title.textContent = "";
+            desc.textContent = "";
+          }
+          modal.style.display = "flex";
+          modal.classList.remove("custom-alert-hidden");
+        };
+
+        const closeBtn = document.getElementById("product-modal-close");
+        const modal = document.getElementById("product-modal");
+        if (closeBtn && modal) {
+          closeBtn.onclick = function () {
+            modal.style.display = "none";
+            modal.classList.add("custom-alert-hidden");
+          };
+          modal.addEventListener("click", function (e) {
+            if (e.target === modal) {
+              modal.style.display = "none";
+              modal.classList.add("custom-alert-hidden");
+            }
+          });
+        }
+      });
+    </script>
+  
+
+    <!-- Modal para productos -->
+    <div id="product-modal" class="custom-alert-hidden" style="position:fixed;z-index:2000;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;">
+      <div class="custom-alert-content">
+        <span
+          id="product-modal-close"
+          class="custom-alert-close"
+          aria-label="Cerrar"
+          >&times;</span
+        >
+        <h3 id="product-modal-title"></h3>
+        <p id="product-modal-desc"></p>
+      </div>
+    </div>
+
     <a
       href="https://wa.me/34600000000?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n"
       class="whatsapp-fijo"
@@ -423,6 +499,9 @@
         <h3>¡Mensaje enviado correctamente!</h3>
         <p>Nos pondremos en contacto contigo pronto.</p>
       </div>
+    </div>
+  </body>
+</html>
     </div>
   </body>
 </html>
