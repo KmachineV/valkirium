@@ -745,12 +745,12 @@ html {
         height: 260px;
     }
     .producto-icono {
-        width: 90px;
-        height: 90px;
+        width: 120px;    /* antes 90px */
+        height: 120px;   /* antes 90px */
     }
     .producto-icono img {
-        width: 48px;
-        height: 48px;
+        width: 72px;     /* antes 48px */
+        height: 72px;    /* antes 48px */
     }
 }
 
@@ -1021,12 +1021,12 @@ html {
         height: 260px;
     }
     .producto-icono {
-        width: 90px;
-        height: 90px;
+        width: 120px;    /* antes 90px */
+        height: 120px;   /* antes 90px */
     }
     .producto-icono img {
-        width: 48px;
-        height: 48px;
+        width: 72px;     /* antes 48px */
+        height: 72px;    /* antes 48px */
     }
 }
 
